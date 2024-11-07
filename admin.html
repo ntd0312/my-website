@@ -4,110 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Danh Mục Chức Năng</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 20px;
-      margin: 0;
-      background-color: #f4f4f4;
+  <script>
+    // Kiểm tra xem người dùng đã đăng nhập chưa
+    window.onload = function() {
+      if (localStorage.getItem("loggedIn") !== "true") {
+        // Nếu chưa đăng nhập, chuyển hướng về trang đăng nhập
+        window.location.href = "index.html";
+      }
     }
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .app-title {
-      font-size: 32px;
-      font-weight: bold;
-      margin-bottom: 5px;
-      color: #007BFF;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-    .menu {
-      width: 200px;
-      background-color: #fff;
-      border-radius: 8px;
-      padding: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      margin-top: 20px;
-    }
-    .menu ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    .menu li {
-      padding: 10px;
-      cursor: pointer;
-      border: 1px solid #ddd;
-      margin-bottom: 5px;
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-    }
-    .menu li i {
-      margin-right: 10px;
-    }
-    .menu li:hover {
-      background-color: #007BFF;
-      color: white;
-    }
-    .submenu {
-      display: none;
-      list-style-type: none;
-      padding-left: 20px;
-    }
-    .submenu li {
-      background-color: #e9e9e9;
-      padding: 8px;
-    }
-    .submenu li:hover {
-      background-color: #0056b3;
-    }
-  </style>
+  </script>
 </head>
 <body>
-
-<div class="container">
-  <div class="app-title">
-    CUTO - Admin
-  </div>
-
-  <div class="menu">
-    <ul>
-      <li onclick="toggleSubmenu('overview')">
-        <i class="fas fa-tachometer-alt"></i> Tổng Quan
-      </li>
-      <li onclick="toggleSubmenu('orders')">
-        <i class="fas fa-box"></i> Đơn Hàng
-      </li>
-      <ul id="orders" class="submenu">
-        <li><i class="fas fa-cogs"></i> Đơn hàng</li>
-        <li><i class="fas fa-link"></i> Ghép đơn</li>
-        <li><i class="fas fa-file-alt"></i> Chứng từ</li>
-        <li><i class="fas fa-search"></i> Tra cứu đơn</li>
-      </ul>
-      <li onclick="toggleSubmenu('drivers')">
-        <i class="fas fa-user-tie"></i> Tài Xế
-      </li>
-      <li onclick="toggleSubmenu('vehicles')">
-        <i class="fas fa-car"></i> Xe
-      </li>
-    </ul>
-  </div>
-</div>
-
-<script>
-  function toggleSubmenu(menuId) {
-    const submenu = document.getElementById(menuId);
-    submenu.style.display = (submenu.style.display === "none" || submenu.style.display === "") ? "block" : "none"; 
-  }
-</script>
-
+  <h1>Chào mừng đến trang quản trị!</h1>
+  <p>Đây là giao diện chức năng sau khi đăng nhập thành công.</p>
 </body>
 </html>
