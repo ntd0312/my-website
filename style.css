@@ -49,6 +49,15 @@ body {
     border-left: 5px solid #fff;
 }
 
+.submenu {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.submenu.hidden {
+    display: none;
+}
+
 .main-content {
     flex-grow: 1;
     padding: 20px;
