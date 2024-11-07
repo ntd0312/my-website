@@ -10,9 +10,13 @@
     <div class="sidebar">
         <h2>CUTO</h2>
         <ul>
-            <li><a href="#" class="active" onclick="showContent('overview')"><span>🏠</span> Tổng quan</a></li>
-            <li><a href="#" onclick="showContent('bangDieuVan')"><span>📑</span> Bảng điều vận</a></li>
-            <li><a href="#" onclick="showContent('bangDatHang')"><span>📋</span> Bảng đặt hàng</a></li>
+            <li>
+                <a href="#" class="active" onclick="toggleSubmenu()"><span>🏠</span> Tổng quan</a>
+                <ul class="submenu hidden">
+                    <li><a href="#" onclick="showContent('bangDieuVan')">Bảng điều vận</a></li>
+                    <li><a href="#" onclick="showContent('bangDatHang')">Bảng đặt hàng</a></li>
+                </ul>
+            </li>
             <li><a href="#"><span>🚗</span> Chuyến xe</a></li>
             <li><a href="#"><span>📊</span> Báo cáo</a></li>
             <li><a href="#"><span>👥</span> Tài xế</a></li>
