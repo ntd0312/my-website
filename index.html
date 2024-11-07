@@ -185,51 +185,53 @@
 
     <script>
         // JavaScript
-        function toggleSubmenu() {
-            const submenu = document.querySelector(".submenu");
-            submenu.classList.toggle("hidden");
-        }
+function toggleSubmenu() {
+    const submenu = document.querySelector(".submenu");
+    submenu.classList.toggle("hidden");
+}
 
-        function showContent(contentId) {
-            // Ẩn tất cả các phần nội dung
-            document.getElementById("overview").classList.add("hidden");
-            document.getElementById("bangDieuVan").classList.add("hidden");
-            document.getElementById("bangDatHang").classList.add("hidden");
+function showContent(contentId) {
+    // Ẩn tất cả các phần nội dung
+    document.getElementById("overview").classList.add("hidden");
+    document.getElementById("bangDieuVan").classList.add("hidden");
+    document.getElementById("bangDatHang").classList.add("hidden");
+    document.getElementById("donHang").classList.add("hidden");
 
-            // Hiển thị phần nội dung được chọn
-            document.getElementById(contentId).classList.remove("hidden");
-        }
+    // Hiển thị phần nội dung được chọn
+    document.getElementById(contentId).classList.remove("hidden");
+}
 
-        function showDonHang() {
-            // Ẩn tất cả các phần nội dung
-            document.getElementById("overview").classList.add("hidden");
-            document.getElementById("bangDieuVan").classList.add("hidden");
-            document.getElementById("bangDatHang").classList.add("hidden");
+function showDonHang() {
+    // Ẩn tất cả các phần nội dung khác
+    document.getElementById("overview").classList.add("hidden");
+    document.getElementById("bangDieuVan").classList.add("hidden");
+    document.getElementById("bangDatHang").classList.add("hidden");
 
-            // Hiển thị phần nội dung Đơn hàng
-            document.getElementById("donHang").classList.remove("hidden");
+    // Hiển thị phần nội dung Đơn hàng
+    document.getElementById("donHang").classList.remove("hidden");
 
-            // Thêm dữ liệu vào bảng Đơn hàng
-            const data = [
-                ["path1", "Sheet1", "1", "SYS001", "Pending", "Customer1", "Location1", "10:00", "2024-11-07", "Location2", "15:00", "2024-11-07", "Truck1", "Item1"],
-                ["path2", "Sheet2", "2", "SYS002", "Completed", "Customer2", "Location3", "09:00", "2024-11-08", "Location4", "14:00", "2024-11-08", "Truck2", "Item2"],
-                // Thêm các dữ liệu khác nếu cần
-            ];
+    // Thêm dữ liệu vào bảng Đơn hàng
+    const data = [
+        ["path1", "Sheet1", "1", "SYS001", "Pending", "Customer1", "Location1", "10:00", "2024-11-07", "Location2", "15:00", "2024-11-07", "Truck1", "Item1"],
+        ["path2", "Sheet2", "2", "SYS002", "Completed", "Customer2", "Location3", "09:00", "2024-11-08", "Location4", "14:00", "2024-11-08", "Truck2", "Item2"],
+        // Thêm các dữ liệu khác nếu cần
+    ];
 
-            const tbody = document.getElementById("donHangData");
-            tbody.innerHTML = ""; // Xóa dữ liệu cũ
+    const tbody = document.getElementById("donHangData");
+    tbody.innerHTML = ""; // Xóa dữ liệu cũ
 
-            // Thêm dữ liệu mới vào bảng
-            data.forEach(row => {
-                let tr = document.createElement("tr");
-                row.forEach(cell => {
-                    let td = document.createElement("td");
-                    td.textContent = cell;
-                    tr.appendChild(td);
-                });
-                tbody.appendChild(tr);
-            });
-        }
+    // Thêm dữ liệu mới vào bảng
+    data.forEach(row => {
+        let tr = document.createElement("tr");
+        row.forEach(cell => {
+            let td = document.createElement("td");
+            td.textContent = cell;
+            tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+    });
+}
+
 
         // Kéo giãn sidebar
         const resizer = document.getElementById('resizer');
