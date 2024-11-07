@@ -1,5 +1,10 @@
 // script.js
 
+function toggleSubmenu() {
+    const submenu = document.querySelector(".submenu");
+    submenu.classList.toggle("hidden");
+}
+
 function showContent(contentId) {
     // Ẩn tất cả các phần nội dung
     document.getElementById("overview").classList.add("hidden");
