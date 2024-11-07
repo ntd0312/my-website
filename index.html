@@ -80,6 +80,25 @@
         .hidden {
             display: none;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #d01e1e;
+            color: white;
+        }
+
+        td {
+            background-color: #f4f4f4;
+        }
     </style>
 </head>
 <body>
@@ -94,7 +113,7 @@
                     <li><a href="#" onclick="showContent('bangDatHang')">Bảng đặt hàng</a></li>
                 </ul>
             </li>
-            <li><a href="#"><span>📦</span> Đơn hàng</a></li>
+            <li><a href="#" onclick="showDonHang()"><span>📦</span> Đơn hàng</a></li>
             <li><a href="#"><span>🚗</span> Chuyến xe</a></li>
             <li><a href="#"><span>📊</span> Báo cáo</a></li>
             <li><a href="#"><span>👥</span> Tài xế</a></li>
@@ -119,6 +138,32 @@
             <h1>Bảng đặt hàng</h1>
             <p>Nội dung của Bảng đặt hàng.</p>
         </div>
+        <div id="donHang" class="hidden">
+            <h1>Đơn hàng</h1>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Đường dẫn</th>
+                        <th>Tên Sheet</th>
+                        <th>Hàng bắt đầu lấy dữ liệu</th>
+                        <th>Mã hệ thống</th>
+                        <th>Trạng thái</th>
+                        <th>Khách hàng</th>
+                        <th>Địa điểm nhận hàng</th>
+                        <th>Giờ nhận hàng</th>
+                        <th>Ngày nhận hàng</th>
+                        <th>Địa điểm trả hàng</th>
+                        <th>Giờ trả hàng</th>
+                        <th>Ngày trả hàng</th>
+                        <th>Xe</th>
+                        <th>Hàng</th>
+                    </tr>
+                </thead>
+                <tbody id="donHangData">
+                    <!-- Dữ liệu sẽ được thêm vào ở đây -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script>
@@ -136,6 +181,37 @@
 
             // Hiển thị phần nội dung được chọn
             document.getElementById(contentId).classList.remove("hidden");
+        }
+
+        function showDonHang() {
+            // Ẩn tất cả các phần nội dung
+            document.getElementById("overview").classList.add("hidden");
+            document.getElementById("bangDieuVan").classList.add("hidden");
+            document.getElementById("bangDatHang").classList.add("hidden");
+
+            // Hiển thị phần nội dung Đơn hàng
+            document.getElementById("donHang").classList.remove("hidden");
+
+            // Thêm dữ liệu vào bảng Đơn hàng
+            const data = [
+                ["path1", "Sheet1", "1", "SYS001", "Pending", "Customer1", "Location1", "10:00", "2024-11-07", "Location2", "15:00", "2024-11-07", "Truck1", "Item1"],
+                ["path2", "Sheet2", "2", "SYS002", "Completed", "Customer2", "Location3", "09:00", "2024-11-08", "Location4", "14:00", "2024-11-08", "Truck2", "Item2"],
+                // Thêm các dữ liệu khác nếu cần
+            ];
+
+            const tbody = document.getElementById("donHangData");
+            tbody.innerHTML = ""; // Xóa dữ liệu cũ
+
+            // Thêm dữ liệu mới vào bảng
+            data.forEach(row => {
+                let tr = document.createElement("tr");
+                row.forEach(cell => {
+                    let td = document.createElement("td");
+                    td.textContent = cell;
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
         }
 
         console.log("Dashboard loaded");
