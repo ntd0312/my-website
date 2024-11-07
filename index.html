@@ -10,9 +10,9 @@
     <div class="sidebar">
         <h2>CUTO</h2>
         <ul>
-            <li><a href="#" class="active"><span>🏠</span> Tổng quan</a></li>
-            <li><a href="#"><span>📑</span> Bảng điều vận</a></li>
-            <li><a href="#"><span>📋</span> Bảng đặt hàng</a></li>
+            <li><a href="#" class="active" onclick="showContent('overview')"><span>🏠</span> Tổng quan</a></li>
+            <li><a href="#" onclick="showContent('bangDieuVan')"><span>📑</span> Bảng điều vận</a></li>
+            <li><a href="#" onclick="showContent('bangDatHang')"><span>📋</span> Bảng đặt hàng</a></li>
             <li><a href="#"><span>🚗</span> Chuyến xe</a></li>
             <li><a href="#"><span>📊</span> Báo cáo</a></li>
             <li><a href="#"><span>👥</span> Tài xế</a></li>
@@ -25,9 +25,18 @@
         </ul>
     </div>
     <div class="main-content">
-        <h1>Dashboard</h1>
-        <p>Welcome to the dashboard!</p>
-        <!-- Nội dung chính của dashboard -->
+        <div id="overview">
+            <h1>Dashboard</h1>
+            <p>Welcome to the dashboard!</p>
+        </div>
+        <div id="bangDieuVan" class="hidden">
+            <h1>Bảng điều vận</h1>
+            <p>Nội dung của Bảng điều vận.</p>
+        </div>
+        <div id="bangDatHang" class="hidden">
+            <h1>Bảng đặt hàng</h1>
+            <p>Nội dung của Bảng đặt hàng.</p>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
