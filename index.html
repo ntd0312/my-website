@@ -15,17 +15,19 @@
 
         body {
             display: flex;
+            height: 100vh;
         }
 
         .sidebar {
             width: 250px;
             background-color: #d01e1e;
             color: white;
-            height: 100vh;
+            height: 100%;
             padding-top: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
         }
 
         .sidebar h2 {
@@ -70,6 +72,9 @@
             flex-grow: 1;
             padding: 20px;
             background-color: #f4f4f4;
+            overflow: auto;
+            resize: horizontal;
+            min-width: 600px;
         }
 
         .main-content h1 {
@@ -99,11 +104,22 @@
         td {
             background-color: #f4f4f4;
         }
+
+        .resizer {
+            position: absolute;
+            right: -5px;
+            top: 0;
+            bottom: 0;
+            width: 10px;
+            cursor: ew-resize;
+            background-color: #444;
+        }
+
     </style>
 </head>
 <body>
     <!-- HTML -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <h2>CUTO</h2>
         <ul>
             <li>
@@ -124,8 +140,9 @@
             <li><a href="#"><span>⚙️</span> Quản lý</a></li>
             <li><a href="#"><span>📁</span> Danh mục</a></li>
         </ul>
+        <div class="resizer" id="resizer"></div>
     </div>
-    <div class="main-content">
+    <div class="main-content" id="main-content">
         <div id="overview">
             <h1>Dashboard</h1>
             <p>Welcome to the dashboard!</p>
@@ -214,7 +231,26 @@
             });
         }
 
-        console.log("Dashboard loaded");
+        // Kéo giãn sidebar
+        const resizer = document.getElementById('resizer');
+        const sidebar = document.getElementById('sidebar');
+        let isResizing = false;
+
+        resizer.addEventListener('mousedown', function(e) {
+            isResizing = true;
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', function() {
+                isResizing = false;
+                document.removeEventListener('mousemove', handleMouseMove);
+            });
+        });
+
+        function handleMouseMove(e) {
+            if (isResizing) {
+                const newWidth = e.clientX;
+                sidebar.style.width = newWidth + 'px';
+            }
+        }
     </script>
 </body>
 </html>
