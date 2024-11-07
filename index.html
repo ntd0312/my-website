@@ -1,258 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Interface</title>
-    <style>
-        /* CSS */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            display: flex;
-            height: 100vh;
-        }
-
-        .sidebar {
-            width: 250px;
-            background-color: #d01e1e;
-            color: white;
-            height: 100%;
-            padding-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        .sidebar h2 {
-            font-size: 24px;
-            margin-bottom: 30px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            width: 100%;
-        }
-
-        .sidebar ul li {
-            width: 100%;
-        }
-
-        .sidebar ul li a {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            border-left: 5px solid transparent;
-        }
-
-        .sidebar ul li a.active, .sidebar ul li a:hover {
-            background-color: #b71c1c;
-            border-left: 5px solid #fff;
-        }
-
-        .submenu {
-            list-style: none;
-            padding-left: 20px;
-        }
-
-        .submenu.hidden {
-            display: none;
-        }
-
-        .main-content {
-            flex-grow: 1;
-            padding: 20px;
-            background-color: #f4f4f4;
-            overflow: auto;
-            resize: horizontal;
-            min-width: 600px;
-        }
-
-        .main-content h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #d01e1e;
-            color: white;
-        }
-
-        td {
-            background-color: #f4f4f4;
-        }
-
-        .resizer {
-            position: absolute;
-            right: -5px;
-            top: 0;
-            bottom: 0;
-            width: 10px;
-            cursor: ew-resize;
-            background-color: #444;
-        }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danh Mục Chức Năng</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    .menu {
+      width: 200px;
+      background-color: #f4f4f4;
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .menu ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .menu li {
+      padding: 10px;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+    .menu li:hover {
+      background-color: #007BFF;
+      color: white;
+    }
+    .submenu {
+      display: none;
+      list-style-type: none;
+      padding-left: 20px;
+    }
+    .submenu li {
+      background-color: #e9e9e9;
+    }
+    .submenu li:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-    <!-- HTML -->
-    <div class="sidebar" id="sidebar">
-        <h2>CUTO</h2>
-        <ul>
-            <li>
-                <a href="#" class="active" onclick="toggleSubmenu()"><span>🏠</span> Tổng quan</a>
-                <ul class="submenu hidden">
-                    <li><a href="#" onclick="showContent('bangDieuVan')">Bảng điều vận</a></li>
-                    <li><a href="#" onclick="showContent('bangDatHang')">Bảng đặt hàng</a></li>
-                </ul>
-            </li>
-            <li><a href="#" onclick="showDonHang()"><span>📦</span> Đơn hàng</a></li>
-            <li><a href="#"><span>🚗</span> Chuyến xe</a></li>
-            <li><a href="#"><span>📊</span> Báo cáo</a></li>
-            <li><a href="#"><span>👥</span> Tài xế</a></li>
-            <li><a href="#"><span>🚚</span> Xe</a></li>
-            <li><a href="#"><span>👤</span> Khách hàng</a></li>
-            <li><a href="#"><span>💲</span> Định mức</a></li>
-            <li><a href="#"><span>📄</span> Phiếu thu chi</a></li>
-            <li><a href="#"><span>⚙️</span> Quản lý</a></li>
-            <li><a href="#"><span>📁</span> Danh mục</a></li>
-        </ul>
-        <div class="resizer" id="resizer"></div>
-    </div>
-    <div class="main-content" id="main-content">
-        <div id="overview">
-            <h1>Dashboard</h1>
-            <p>Welcome to the dashboard!</p>
-        </div>
-        <div id="bangDieuVan" class="hidden">
-            <h1>Bảng điều vận</h1>
-            <p>Nội dung của Bảng điều vận.</p>
-        </div>
-        <div id="bangDatHang" class="hidden">
-            <h1>Bảng đặt hàng</h1>
-            <p>Nội dung của Bảng đặt hàng.</p>
-        </div>
-        <div id="donHang" class="hidden">
-            <h1>Đơn hàng</h1>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Đường dẫn</th>
-                        <th>Tên Sheet</th>
-                        <th>Hàng bắt đầu lấy dữ liệu</th>
-                        <th>Mã hệ thống</th>
-                        <th>Trạng thái</th>
-                        <th>Khách hàng</th>
-                        <th>Địa điểm nhận hàng</th>
-                        <th>Giờ nhận hàng</th>
-                        <th>Ngày nhận hàng</th>
-                        <th>Địa điểm trả hàng</th>
-                        <th>Giờ trả hàng</th>
-                        <th>Ngày trả hàng</th>
-                        <th>Xe</th>
-                        <th>Hàng</th>
-                    </tr>
-                </thead>
-                <tbody id="donHangData">
-                    <!-- Dữ liệu sẽ được thêm vào ở đây -->
-                </tbody>
-            </table>
-        </div>
-    </div>
 
-    <script>
-        // JavaScript
-function toggleSubmenu() {
-    const submenu = document.querySelector(".submenu");
-    submenu.classList.toggle("hidden");
-}
+<div class="menu">
+  <ul>
+    <li onclick="toggleSubmenu('overview')">Tổng Quan</li>
+    <li onclick="toggleSubmenu('orders')">Đơn Hàng</li>
+    <ul id="orders" class="submenu">
+      <li>Đơn hàng</li>
+      <li>Ghép đơn</li>
+      <li>Chứng từ</li>
+      <li>Tra cứu đơn</li>
+    </ul>
+    <li onclick="toggleSubmenu('drivers')">Tài Xế</li>
+    <li onclick="toggleSubmenu('vehicles')">Xe</li>
+  </ul>
+</div>
 
-function showContent(contentId) {
-    // Ẩn tất cả các phần nội dung
-    document.getElementById("overview").classList.add("hidden");
-    document.getElementById("bangDieuVan").classList.add("hidden");
-    document.getElementById("bangDatHang").classList.add("hidden");
-    document.getElementById("donHang").classList.add("hidden");
+<script>
+  function toggleSubmenu(menuId) {
+    const submenu = document.getElementById(menuId);
+    submenu.style.display = (submenu.style.display === "none" || submenu.style.display === "") ? "block" : "none";
+  }
+</script>
 
-    // Hiển thị phần nội dung được chọn
-    document.getElementById(contentId).classList.remove("hidden");
-}
-
-function showDonHang() {
-    // Ẩn tất cả các phần nội dung khác
-    document.getElementById("overview").classList.add("hidden");
-    document.getElementById("bangDieuVan").classList.add("hidden");
-    document.getElementById("bangDatHang").classList.add("hidden");
-
-    // Hiển thị phần nội dung Đơn hàng
-    document.getElementById("donHang").classList.remove("hidden");
-
-    // Thêm dữ liệu vào bảng Đơn hàng
-    const data = [
-        ["path1", "Sheet1", "1", "SYS001", "Pending", "Customer1", "Location1", "10:00", "2024-11-07", "Location2", "15:00", "2024-11-07", "Truck1", "Item1"],
-        ["path2", "Sheet2", "2", "SYS002", "Completed", "Customer2", "Location3", "09:00", "2024-11-08", "Location4", "14:00", "2024-11-08", "Truck2", "Item2"],
-        // Thêm các dữ liệu khác nếu cần
-    ];
-
-    const tbody = document.getElementById("donHangData");
-    tbody.innerHTML = ""; // Xóa dữ liệu cũ
-
-    // Thêm dữ liệu mới vào bảng
-    data.forEach(row => {
-        let tr = document.createElement("tr");
-        row.forEach(cell => {
-            let td = document.createElement("td");
-            td.textContent = cell;
-            tr.appendChild(td);
-        });
-        tbody.appendChild(tr);
-    });
-}
-
-
-        // Kéo giãn sidebar
-        const resizer = document.getElementById('resizer');
-        const sidebar = document.getElementById('sidebar');
-        let isResizing = false;
-
-        resizer.addEventListener('mousedown', function(e) {
-            isResizing = true;
-            document.addEventListener('mousemove', handleMouseMove);
-            document.addEventListener('mouseup', function() {
-                isResizing = false;
-                document.removeEventListener('mousemove', handleMouseMove);
-            });
-        });
-
-        function handleMouseMove(e) {
-            if (isResizing) {
-                const newWidth = e.clientX;
-                sidebar.style.width = newWidth + 'px';
-            }
-        }
-    </script>
 </body>
 </html>
