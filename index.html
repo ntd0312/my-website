@@ -8,19 +8,18 @@
     function login() {
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
-      // Kiểm tra thông tin đăng nhập
+      
       if (username === "admin" && password === "123456") {
-        // Chuyển hướng đến trang admin nếu đúng
-        window.location.href = "https://ntd0312.github.io/my-website/admin.html";
+        // Lưu trạng thái đăng nhập vào localStorage
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "admin.html"; // Chuyển đến trang admin
       } else {
-        // Hiển thị thông báo nếu sai thông tin
         alert("Sai tên người dùng hoặc mật khẩu!");
       }
     }
   </script>
 </head>
 <body>
-
   <h2>Đăng Nhập</h2>
   <form onsubmit="event.preventDefault(); login();">
     <label for="username">Tên người dùng:</label><br>
@@ -31,6 +30,5 @@
     
     <button type="submit">Đăng Nhập</button>
   </form>
-
 </body>
 </html>
