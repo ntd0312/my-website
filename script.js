@@ -1,3 +1,2 @@
-function showAlert() {
-    alert("Hello! This is an alert from JavaScript.");
-}
+// JavaScript để thêm tính năng (nếu cần)
+console.log("Dashboard loaded");
