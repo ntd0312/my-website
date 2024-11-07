@@ -4,14 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Danh Mục Chức Năng</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
       display: flex;
-      justify-content: flex-start; /* Hiển thị các nút ở bên trái */
+      flex-direction: column; /* Thay đổi layout để tên ứng dụng và menu nằm trên dưới */
+      align-items: flex-start;
       padding: 20px;
       margin: 0;
       background-color: #f4f4f4;
+    }
+    .app-title {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #007BFF;
     }
     .menu {
       width: 200px;
@@ -19,6 +27,7 @@
       border-radius: 8px;
       padding: 10px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
     }
     .menu ul {
       list-style-type: none;
@@ -30,7 +39,11 @@
       border: 1px solid #ddd;
       margin-bottom: 5px;
       border-radius: 5px;
-      background-color: #fff;
+      display: flex;
+      align-items: center;
+    }
+    .menu li i {
+      margin-right: 10px;
     }
     .menu li:hover {
       background-color: #007BFF;
@@ -43,33 +56,65 @@
     }
     .submenu li {
       background-color: #e9e9e9;
+      padding: 8px;
     }
     .submenu li:hover {
       background-color: #0056b3;
+    }
+    iframe {
+      width: 100%;
+      height: 600px; /* Đặt chiều cao của iframe */
+      border: none;
+      margin-top: 20px;
+      display: none; /* Ẩn iframe ban đầu */
     }
   </style>
 </head>
 <body>
 
+<div class="app-title">
+  CUTO
+</div>
+
 <div class="menu">
   <ul>
-    <li onclick="toggleSubmenu('overview')">Tổng Quan</li>
-    <li onclick="toggleSubmenu('orders')">Đơn Hàng</li>
+    <li onclick="toggleSubmenu('overview')">
+      <i class="fas fa-tachometer-alt"></i> Tổng Quan
+    </li>
+    <li onclick="toggleSubmenu('orders')">
+      <i class="fas fa-box"></i> Đơn Hàng
+    </li>
     <ul id="orders" class="submenu">
-      <li>Đơn hàng</li>
-      <li>Ghép đơn</li>
-      <li>Chứng từ</li>
-      <li>Tra cứu đơn</li>
+      <li><i class="fas fa-cogs"></i> Đơn hàng</li>
+      <li><i class="fas fa-link"></i> Ghép đơn</li>
+      <li><i class="fas fa-file-alt"></i> Chứng từ</li>
+      <li><i class="fas fa-search"></i> Tra cứu đơn</li>
     </ul>
-    <li onclick="toggleSubmenu('drivers')">Tài Xế</li>
-    <li onclick="toggleSubmenu('vehicles')">Xe</li>
+    <li onclick="toggleSubmenu('drivers')">
+      <i class="fas fa-user-tie"></i> Tài Xế
+    </li>
+    <li onclick="toggleSubmenu('vehicles')">
+      <i class="fas fa-car"></i> Xe
+    </li>
+    <!-- Thêm nút Mail vào đây -->
+    <li onclick="openMail()">
+      <i class="fas fa-envelope"></i> Mail
+    </li>
   </ul>
 </div>
+
+<!-- Thêm iframe để hiển thị trang web mail -->
+<iframe id="mailFrame" src="https://webmail.vhost.email/#1"></iframe>
 
 <script>
   function toggleSubmenu(menuId) {
     const submenu = document.getElementById(menuId);
-    submenu.style.display = (submenu.style.display === "none" || submenu.style.display === "") ? "block" : "none";
+    submenu.style.display = (submenu.style.display === "none" || submenu.style.display === "") ? "block" : "none"; 
+  }
+
+  function openMail() {
+    const iframe = document.getElementById('mailFrame');
+    iframe.style.display = 'block'; // Hiển thị iframe khi nhấn vào nút Mail
   }
 </script>
 
