@@ -87,6 +87,25 @@
     .import-container button:hover {
       background-color: #0056b3;
     }
+    .table-container {
+      margin-top: 20px;
+      width: 100%;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
   </style>
   <script>
     // Kiểm tra xem người dùng đã đăng nhập chưa
@@ -105,16 +124,47 @@
         reader.onload = function(e) {
           const data = e.target.result;
           const workbook = XLSX.read(data, { type: 'binary' });
-          // Xử lý file Excel ở đây, ví dụ: lấy dữ liệu từ sheet đầu tiên
-          const sheetName = workbook.SheetNames[0];
+
+          // Tìm sheet có tên "Danh sach don hang"
+          const sheetName = "Danh sach don hang";
           const worksheet = workbook.Sheets[sheetName];
-          const jsonData = XLSX.utils.sheet_to_json(worksheet);
-          console.log(jsonData); // In dữ liệu ra console, có thể thay thế bằng việc xử lý dữ liệu
+
+          if (worksheet) {
+            // Chuyển đổi sheet thành dữ liệu JSON
+            const jsonData = XLSX.utils.sheet_to_json(worksheet);
+            displayData(jsonData);
+          } else {
+            alert("Không tìm thấy sheet 'Danh sach don hang' trong file.");
+          }
         };
         reader.readAsBinaryString(file);
       } else {
         alert("Vui lòng chọn file Excel (.xlsx)!");
       }
+    }
+
+    // Hàm để hiển thị dữ liệu lên dashboard dưới dạng bảng
+    function displayData(data) {
+      const tableContainer = document.getElementById("tableContainer");
+      let tableHTML = "<table><thead><tr>";
+
+      // Tạo phần tiêu đề bảng
+      Object.keys(data[0]).forEach(key => {
+        tableHTML += `<th>${key}</th>`;
+      });
+      tableHTML += "</tr></thead><tbody>";
+
+      // Tạo phần dữ liệu bảng
+      data.forEach(row => {
+        tableHTML += "<tr>";
+        Object.values(row).forEach(value => {
+          tableHTML += `<td>${value}</td>`;
+        });
+        tableHTML += "</tr>";
+      });
+
+      tableHTML += "</tbody></table>";
+      tableContainer.innerHTML = tableHTML;
     }
   </script>
 </head>
@@ -151,6 +201,11 @@
         <i class="fas fa-car"></i> Xe
       </li>
     </ul>
+  </div>
+
+  <!-- Hiển thị bảng dữ liệu -->
+  <div id="tableContainer" class="table-container">
+    <!-- Bảng dữ liệu sẽ được hiển thị ở đây -->
   </div>
 </div>
 
